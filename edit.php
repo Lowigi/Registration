@@ -1,5 +1,5 @@
 <?php
-include "db_conn.php";
+include("db_con.php");
 $id = $_GET["id"];
 
 if (isset($_POST["submit"])) {
@@ -10,12 +10,12 @@ if (isset($_POST["submit"])) {
 
   $sql = "UPDATE `user` SET `first_name`='$first_name',`last_name`='$last_name',`email`='$email',`gender`='$gender' WHERE id = $id";
 
-  $result = mysqli_query($conn, $sql);
+  $result = mysqli_query($_conn, $sql);
 
   if ($result) {
-    header("Location: index.php?msg=Data updated successfully");
+    header("Location: index2.php?msg=Data updated successfully");
   } else {
-    echo "Failed: " . mysqli_error($conn);
+    echo "Failed: " . mysqli_error($_conn);
   }
 }
 
@@ -40,12 +40,10 @@ if (isset($_POST["submit"])) {
 
   <title>Edit</title>
 </head>
-
+<?php
+include("header.php");
+?>
 <body>
-  <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #6C22a6;">
-    PHP Complete CRUD Application
-  </nav>
-
   <div class="container">
     <div class="text-center mb-4">
       <h3>Edit User Information</h3>
@@ -54,7 +52,7 @@ if (isset($_POST["submit"])) {
 
     <?php
     $sql = "SELECT * FROM `user` WHERE id = $id LIMIT 1";
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($_conn, $sql);
     $row = mysqli_fetch_assoc($result);
     ?>
 
@@ -89,7 +87,7 @@ if (isset($_POST["submit"])) {
 
         <div>
           <button type="submit" class="btn btn-success" name="submit">Update</button>
-          <a href="index.php" class="btn btn-danger">Cancel</a>
+          <a href="index2.php" class="btn btn-danger">Cancel</a>
         </div>
       </form>
     </div>
@@ -99,5 +97,5 @@ if (isset($_POST["submit"])) {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 </body>
-
+<?php include 'footer.php'; ?>
 </html>

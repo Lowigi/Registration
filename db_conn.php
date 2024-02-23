@@ -1,14 +1,14 @@
 <?php
+
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "activity";
+$username = "id21913294_lowigi";
+$password = "@Lowigi09";
+$dbname = "id21913294_wegi";
 
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$con = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+if ($con->connect_error) {
+    die("Connection failed: " . $con->connect_error);
 }
-//echo "Connected successfully";
